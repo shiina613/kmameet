@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm với Đề xuất</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+
+        .search-container {
+            position: relative;
+            width: 300px;
+        }
+
+        #search-box {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .suggestions {
+            position: absolute;
+            top: 35px;
+            left: 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 4px;
+            background-color: white;
+            z-index: 100;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container position-relative d-flex align-items-center justify-content-between">
+
+            <!-- Logo -->
+            <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                <h1 class="sitename">KMA Meet</h1>
+                <span>.</span>
+            </a>
+
+            <!-- Navigation Menu -->
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="#hero" class="active">Trang chủ</a></li>
+                    <li><a href="#menu">Lịch họp</a></li>
+                    <li><a href="#events">Tài liệu</a></li>
+                    <li><a href="#chefs" id="right">Lên lịch</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span>Tài khoản</span></a>
+                        <ul>
+                            <li><a href="#">Thông tin cá nhân</a></li>
+                            <li><a href="#">Đăng nhập</a></li>
+                            <li><a href="#">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    
+
+    <div class="search-container">
+        <input type="text" id="search-box" placeholder="Tìm kiếm..." oninput="showSuggestions()" />
+        <div id="suggestions" class="suggestions"></div>
+    </div>
+
+    <script>
+        const data = [
+            { id: 1, name: "Sản phẩm A", description: "Một sản phẩm chất lượng cao, phù hợp với nhu cầu sử dụng hàng ngày.", price: 200000 },
+            { id: 2, name: "Dịch vụ B", description: "Dịch vụ hỗ trợ khách hàng 24/7, giúp giải quyết mọi vấn đề nhanh chóng.", price: 500000 },
+            { id: 3, name: "Ứng dụng C", description: "Ứng dụng di động giúp người dùng quản lý công việc và thời gian hiệu quả.", price: 0 },
+            { id: 4, name: "Máy tính D", description: "Máy tính xách tay cấu hình mạnh mẽ, phù hợp cho công việc văn phòng và giải trí.", price: 15000000 },
+            { id: 5, name: "Khóa học E", description: "Khóa học về lập trình cơ bản, giúp người học xây dựng nền tảng vững chắc.", price: 1500000 },
+            { id: 6, name: "Bộ đồ F", description: "Bộ trang phục thể thao thời trang, mang lại sự thoải mái khi vận động.", price: 800000 },
+            { id: 7, name: "Sách G", description: "Cuốn sách chuyên sâu về kỹ thuật lập trình, là tài liệu học tập không thể thiếu.", price: 250000 },
+            { id: 8, name: "Thực phẩm H", description: "Thực phẩm tươi sống, đảm bảo chất lượng và vệ sinh an toàn thực phẩm.", price: 100000 },
+            { id: 9, name: "Dụng cụ I", description: "Dụng cụ nhà bếp tiện ích, giúp việc nấu nướng trở nên dễ dàng và nhanh chóng.", price: 50000 },
+            { id: 10, name: "Tour du lịch J", description: "Chuyến du lịch trọn gói đến các địa điểm nổi tiếng, khám phá văn hóa và thiên nhiên tuyệt vời.", price: 3000000 }
+        ];
+
+        function showSuggestions() {
+            const input = document.getElementById('search-box').value;
+            const suggestionsBox = document.getElementById('suggestions');
+
+            // Clear any previous suggestions
+            suggestionsBox.innerHTML = '';
+
+            if (input === '') {
+                suggestionsBox.style.display = 'none';
+                return;
+            }
+
+            // Filter data based on user input
+            const filteredSuggestions = data.filter(item => item.name.toLowerCase().includes(input.toLowerCase()));
+
+            if (filteredSuggestions.length > 0) {
+                suggestionsBox.style.display = 'block';
+                filteredSuggestions.forEach(item => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.classList.add('suggestion-item');
+                    suggestionItem.textContent = `${item.name} - ${item.id} - ${item.price}`;
+                    suggestionItem.onclick = () => selectSuggestion(item);
+                    suggestionsBox.appendChild(suggestionItem);
+                });
+            } else {
+                suggestionsBox.style.display = 'none';
+            }
+        }
+
+        function selectSuggestion(item) {
+            // Set the input field value to the selected suggestion
+            document.getElementById('search-box').value = `${item.name} - ${item.id} - ${item.price}`; //chỗ này hiển thị trên search box
+            document.getElementById('suggestions').style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>

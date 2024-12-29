@@ -1,0 +1,129 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Meetings</title>
+    <link rel="stylesheet" href="../header.css">
+    <script src="../header.js"></script>
+    <link rel="stylesheet" href="edit.css">
+
+    <!-- import the webpage's javascript file -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+    <script src="https://cdn.stringee.com/sdk/web/2.2.1/stringee-web-sdk.min.js"></script>
+
+    <script src="stringee.js"></script>
+</head>
+
+<body>
+    <div class="body-container">
+
+        <div class="header">
+            <!-- Logo -->
+            <div class="logo_header"><span>KMA</span> Meet</div>
+
+            <!-- Navigation links -->
+            <div class="nav_header">
+                <a href="../home/index.html">Home</a>
+                <a href="../calendar/calendar.html">Calendar</a>
+                <a href="../documents/document.html">Document</a>
+                <a href="../meet/index.html">Meet</a>
+
+                <!-- Notice Pop-up -->
+                <div class="popup_header">
+                    <a href="#notice" id="noticeBtn_header">Notice</a>
+                    <div class="popup-content_header" id="noticePopup_header">
+                        <a href="#">Notification 1</a>
+                        <a href="#">Notification 2</a>
+                        <a href="../login/index.html">Notification 3</a>
+                    </div>
+                </div>
+
+                <!-- Account Pop-up -->
+                <div class="popup_header">
+                    <a href="#account" id="accountBtn_header">Account</a>
+                    <div class="popup-content_header" id="accountPopup_header">
+                        <a href="#info">Information</a>
+                        <a href="#logout">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="meeting-information">
+            <h1 id="meeting_information_h1">Tên của cuộc họp đang được cập nhật</h1>
+            <div id="meeting_information">
+                <p>Tên cuộc họp: <span id="meeting_name"></span></p>
+                <p>Mã gợi nhớ: <span id="meeting_rememberCode"></span></p>
+                <p>Thời gian bắt đầu: <span id="meeting_startTime"></span> </p>
+                <p>Thời gian kết thúc dự kiến: <span id="meeting_expectedEndTime"></span></p>
+                <p>Phòng ban: <span id="meeting_department"></span></p>
+                <p>Phòng họp: <span id="meeting_room"></span> </p>
+                <button onclick="pre_edit_meeting()">Chỉnh sửa</button>
+            </div>
+            <div class="member">
+                <table>
+                    <thead>
+                        <th>Tên thành viên</th>
+                        <th>Mã nhân viên</th>
+                        <th>Chức danh</th>
+                        <th>Thao tác</th>
+
+                    </thead>
+                    <tbody id="meeting_member_tbody">
+
+                    </tbody>
+                </table>
+                <div class=" add_new_member">
+                    <div id="show_add_button">
+                        <p><button onclick="pre_add_member()">Thêm thành viên</button></p>
+                    </div>
+
+                    <div id="add_new_member" style="display: none;">
+                        <span>Nhập tên nhân viên: </span>
+                        <span id="search">
+                            <input type="text" id="searchBox" placeholder="Search by name..."
+                                oninput="handleSearch(this.value)" />
+                        </span>
+                        <ul id="suggestions" class="suggestion-box"></ul>
+
+                        <span> Chọn chức vụ: </span>
+                        <select id="new_member_role">
+                            <option>Chọn chức vụ</option>
+                        </select>
+                        <br>
+                        <button type="button" onclick="show_add_button()">Hủy</button>
+                        <button type="button" onclick="add_member()">Thêm</button>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="document">
+                <p><strong>Tài liệu: </strong></p>
+                <div id="meeting_document_information">
+                    <a href="#">Tài liệu 1 </a> <button>Xóa</button>
+                    <a href="#">Tài liệu 1 </a><button>Xóa</button>
+                    <a href="#">Tài liệu 1 </a><button>Xóa</button>
+                    <a href="#">Tài liệu 1 </a><button>Xóa</button>
+                    <a href="#">Tài liệu 1 </a><button>Xóa</button>
+                </div>
+                <button>Thêm tài liệu</button>
+                <br>
+                <span>Chọn tài liệu: </span>
+                <input type="file" multiple>
+                <span><button type="button" onclick="add_document()">Thêm</button></span>
+            </div>
+
+
+        </div>
+        <script src="edit.js"></script>
+        <script src="editDocument.js"></script>
+        <script src="editMeeting.js"></script>
+        <script src="editMember.js"></script>
+        <script src="getAllInformation.js"></script>
+    </div>
+
+</body>
+
+</html>

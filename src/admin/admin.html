@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Trị</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: #1abc9c;
+            color: #fff;
+        }
+
+        .sub-menu {
+            list-style-type: none;
+            padding-left: 20px;
+            margin-left: 20px;
+            display: none;
+        }
+
+        .sidebar li.active>.sub-menu {
+            display: block;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        #add_employee label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #add_employee input[type="text"],
+        #add_employee input[type="date"] {
+            width: calc(100% - 20px);
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Thêm style responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showTab('account')">Tài Khoản</a></li>
+                <li><a href="#" onclick="showTab('employee')">Nhân Viên</a></li>
+                <li><a href="#" onclick="showTab('position')">Chức Vụ</a></li>
+                <li><a href="#" onclick="showTab('department')">Phòng Ban</a></li>
+                <li>
+                    <a href="#" onclick="toggleSubMenu('meet-sub-menu')">Cuộc Họp</a>
+                    <ul id="meet-sub-menu" class="sub-menu">
+                        <li><a href="#" onclick="showTab('member')">Thành Viên</a></li>
+                        <li><a href="#" onclick="showTab('info')">Thông Tin</a></li>
+                        <li><a href="#" onclick="showTab('document')">Tài Liệu</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" onclick="showTab('role')">Vai Trò</a></li>
+                <li><a href="#" onclick="showTab('room')">Phòng</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div id="account" class="tab-content">
+                <h1>Tài Khoản</h1>
+                <p>Danh sách tài khoản quản lý hệ thống.</p>
+                <table>
+                    <thead>
+                        <th>ID</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Mật khẩu</th>
+                        <th>Nhân viên</th>
+                    </thead>
+                    <tbody id="account_tbody">
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="employee" class="tab-content">
+                <h1>Nhân Viên</h1>
+                <p>Thông tin chi tiết về nhân viên.</p>
+                <table>
+                    <thead>
+                        <th>Mã nhân viên</th>
+                        <th>Họ và tên</th>
+                        <th>Ngày sinh</th>
+                        <th>SĐT</th>
+                        <th>Học vị</th>
+                        <th>CCCD</th>
+                        <th>Địa chỉ</th>
+                        <th>Chức vụ</th>
+                        <th>Nơi công tác</th>
+                        <th>STK</th>
+                        <th>Bank</th>
+                        <th>Phòng ban</th>
+                        <th>Thao tác</th>
+                    </thead>
+                    <tbody id="employee_tbody">
+                        <tr>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div id="add_employee">
+                    <h1>Vui lòng nhập thông tin nhân viên mới</h1>
+                    <form>
+                        <label for="new_employee_name">Họ và tên *</label>
+                        <input type="text" id="new_employee_name" placeholder="Nhập họ và tên" required>
+                        <label for="new_employee_idEmployee">Mã nhân viên *</label>
+                        <input type="text" id="new_employee_idEmployee" placeholder="Nhập mã nhân viên" required>
+
+                        <label for="new_employee_department">Chọn phòng ban</label>
+                        <select id="new_employee_department">
+                            <option value="">Chọn phòn ban</option>
+
+                        </select>
+
+                        <label for="new_employee_position">Chọn chức vụ</label>
+                        <select id="new_employee_position">
+                            <option value="">Chọn chức vụ</option>
+                        </select>
+
+                        <label for="new_employee_degree">Nhập học vị *</label>
+                        <input type="text" id="new_employee_degree" placeholder="Nhập học vị" required>
+                        <label for="new_employee_dob">Ngày sinh *</label>
+                        <input type="date" id="new_employee_dob" required>
+                    </form>
+                </div>
+
+                <button type="button" onclick="add_new_employee()">Thêm nhân viên</button>
+
+            </div>
+            <div id="position" class="tab-content">
+                <h1>Chức Vụ</h1>
+                <p>Quản lý các chức vụ của nhân viên.</p>
+                <table>
+                    <thead>
+                        <th>ID</th>
+                        <th>Tên chức vụ</th>
+                    </thead>
+                    <tbody id="position_tbody">
+
+                    </tbody>
+                </table>
+
+                <div class="add_new_posittion">
+                    <br>
+                    <h2>Thêm chức vụ</h2>
+                    <form>
+
+                        <label for="new_posittion_name">Nhập tên chức vụ *</label>
+                        <input id="new_position_name" type="text" placeholder="Nhập tên chức vụ mới" required>
+                        <br>
+
+                        <button type="button" onclick="add_new_position()">Thêm chức vụ mới</button>
+                    </form>
+                </div>
+
+            </div>
+            <div id="department" class="tab-content">
+
+                <h1>Phòng Ban</h1>
+                <p>Quản lý các phòng ban trong công ty.</p>
+                <table>
+                    <thead>
+                        <th>ID</th>
+                        <th>Tên phòng ban</th>
+                        <th>Mô tả</th>
+                    </thead>
+                    <tbody id="department_tbody">
+
+                    </tbody>
+                </table>
+
+                <div class="add_new_department">
+                    <br>
+                    <h2>Thêm phòng ban</h2>
+                    <form>
+                        <label for="new_department_id">Nhập mã phòng ban *</label>
+                        <input id="new_department_id" type="text" placeholder="Nhập mã phòng ban" required>
+                        <br>
+                        <label for="new_department_name">Nhập tên phòng ban *</label>
+                        <input id="new_department_name" type="text" placeholder="Nhập tên phòng ban" required>
+                        <br>
+                        <label for="new_department_description">Nhập mô tả *</label>
+                        <input type="text" id="new_department_description" required>
+                        <br>
+                        <button type="button" onclick="add_new_department()">Thêm phòng ban mới</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <div id="member" class="tab-content">
+                <h1>Thành Viên</h1>
+                <p>Quản lý thành viên trong cuộc họp.</p>
+            </div>
+            <div id="info" class="tab-content">
+                <h1>Thông Tin</h1>
+                <p>Quản lý thông tin cuộc họp.</p>
+            </div>
+            <div id="document" class="tab-content">
+                <h1>Tài Liệu</h1>
+                <p>Quản lý tài liệu cuộc họp.</p>
+            </div>
+
+            <div id="role" class="tab-content">
+                <h1>Vai Trò</h1>
+                <p>Quản lý vai trò trong hệ thống.</p>
+                <table>
+                    <thead>
+                        <th>ID</th>
+                        <th>Tên chức danh</th>
+                        <th>Mô tả</th>
+                        <th>Thao tác</th>
+                    </thead>
+                    <tbody id="role_tbody">
+
+                    </tbody>
+                </table>
+
+                <div class="add_new_role">
+                    <br>
+                    <h2>Thêm vai trò</h2>
+                    <form>
+                        <label for="new_role_name">Nhập tên chức danh *</label>
+                        <input id="new_role_name" type="text" placeholder="Nhập tên phòng họp" required>
+                        <br>
+                        <label for="new_role_description">Nhập mô tả *</label>
+                        <input type="text" id="new_role_description" required>
+                        <br>
+                        <button type="button" onclick="add_new_role()">Thêm phòng họp mới</button>
+                    </form>
+                </div>
+
+
+            </div>
+            <div id="room" class="tab-content">
+                <h1>Phòng</h1>
+                <p>Quản lý các phòng họp trong công ty.</p>
+                <table>
+                    <thead>
+                        <th>ID</th>
+                        <th>Tên phòng</th>
+                        <th>Sức chứa</th>
+                        <th>Thao tác</th>
+                    </thead>
+                    <tbody id="room_tbody">
+
+                    </tbody>
+                </table>
+
+                <div class="add_new_room">
+                    <br>
+                    <h2>Thêm phòng họp</h2>
+                    <form>
+                        <label for="new_room_name">Nhập tên phòng họp *</label>
+                        <input id="new_room_name" type="text" placeholder="Nhập tên phòng họp" required>
+                        <br>
+                        <label for="new_room_capacity">Nhập sức chứa phòng họp</label>
+                        <input type="number" id="new_room_capacity" required>
+                        <br>
+                        <label for="new_room_description">Nhập mô tả phòng(Nếu có)</label>
+                        <input type="text" id="new_room_description" value="">
+                        <br>
+                        <button type="button" onclick="add_new_room()">Thêm phòng họp mới</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function toggleSubMenu(subMenuId) {
+            const subMenu = document.getElementById(subMenuId);
+            subMenu.style.display = subMenu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+    <script src="admin.js"></script>
+    <script src="account.js"></script>
+    <script src="position.js"></script>
+    <script src="department.js"></script>
+    <script src="role.js"></script>
+    <script src="room.js"></script>
+    <script src="employee.js"></script>
+</body>
+
+</html>

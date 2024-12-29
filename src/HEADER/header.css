@@ -1,0 +1,202 @@
+
+:root {
+    scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+  # General Styling & Shared Classes
+  --------------------------------------------------------------*/
+header {
+    font-family: Roboto, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+header a {
+    color: rgba(0, 0, 0, 1);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+header a:hover {
+    color: color-mix(in srgb, rgb(0, 0, 0), transparent 25%);
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+/*--------------------------------------------------------------
+  # Global Header
+  --------------------------------------------------------------*/
+
+#header-container {
+    display: flex;
+}
+
+.header {
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0.045);
+    padding: 15px 0;
+    transition: all 0.5s;
+    z-index: 997;
+}
+
+#span-header {
+    color: #ce1212;
+}
+
+.header .logo {
+    line-height: 1;
+    margin-right: 26vw;
+    margin-left: 2vw;
+}
+
+.header .logo img {
+    max-height: 36px;
+    margin-right: 8px;
+}
+
+.header .logo h1 {
+    font-size: 30px;
+    margin: 0;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 1);
+    font-family: Roboto, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/*--------------------------------------------------------------
+  # Navigation Menu
+  --------------------------------------------------------------*/
+/* Desktop Navigation */
+
+.navmenu {
+    padding: 0;
+}
+
+.navmenu ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.navmenu li {
+    position: relative;
+}
+
+.navmenu>ul>li {
+    white-space: nowrap;
+    padding: 15px 14px;
+}
+
+.navmenu>ul>li:last-child {
+    padding-right: 0;
+}
+
+.navmenu a,
+.navmenu a:focus {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    padding: 0 2px;
+    font-family: var(--nav-font);
+    font-weight: 543;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+    position: relative;
+}
+
+.navmenu a i,
+.navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.navmenu>ul>li>a:before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: #ce1212;
+    visibility: hidden;
+    width: 0px;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.navmenu a:hover:before,
+.navmenu li:hover>a:before,
+.navmenu .active:before {
+    visibility: visible;
+    width: 100%;
+}
+
+.navmenu li:hover>a,
+.navmenu .active,
+.navmenu .active:focus {
+    color: color-mix(in srgb, black 80%, black 50%);
+}
+
+
+.navmenu .dropdown ul {
+    margin: 0;
+    padding: 10px 0;
+    background: #ffffff;
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    left: 14px;
+    top: 130%;
+    opacity: 0;
+    transition: 0.3s;
+    border-radius: 4px;
+    z-index: 99;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+}
+
+.navmenu .dropdown ul li {
+    min-width: 200px;
+}
+
+.navmenu .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    color: #7f7f90;
+}
+
+.navmenu .dropdown ul a i {
+    font-size: 12px;
+}
+
+.navmenu .dropdown ul a:hover,
+.navmenu .dropdown ul .active:hover,
+.navmenu .dropdown ul li:hover>a {
+    color: #ce1212;
+}
+
+.navmenu .dropdown:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+}
+
+.navmenu .dropdown .dropdown ul {
+    top: 0;
+    left: -90%;
+    visibility: hidden;
+}
+
+.navmenu .dropdown .dropdown:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: -100%;
+    visibility: visible;
+}
+
+
+#right {
+    margin-right: 23vw;
+}
