@@ -3,14 +3,12 @@
   --------------------------------------------------------------*/
 header {
     font-family: Roboto, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    width: 100vw;
 }
 
 header a {
     color: rgba(0, 0, 0, 1);
     text-decoration: none;
     transition: 0.3s;
-
 }
 
 header a:hover {
@@ -193,15 +191,7 @@ header a:hover {
     visibility: visible;
 }
 
-.sitename {
-    margin-right: 4vw !important;
-}
 
 #right {
-    margin-right: 29vw !important;
-}
-#account_btn {
-    font-weight: bolder;
-    color: black;
-    font-size: larger;
+    margin-right: 25vw;
 }

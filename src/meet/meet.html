@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>KMA Meet - Meet</title>
+	<title>Meet - KMA Meet</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="colorlib.com">
 
@@ -11,39 +11,41 @@
 	<link rel="stylesheet" href="material-design-iconic-font.css">
 
 	<!-- STYLE CSS -->
+
+	<link rel="stylesheet" href="../HEADER/header.css">
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 	<header id="header" class="header d-flex align-items-center sticky-top">
-        <div id="header-container"
-            class="container position-relative d-flex align-items-center justify-content-between">
+		<div id="header-container"
+			class="container position-relative d-flex align-items-center justify-content-between">
 
-            <!-- Logo -->
-            <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-                <h1 class="sitename">KMA Meet<span id="span-header">.</span></h1>
-            </a>
+			<!-- Logo -->
+			<a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+				<h1 class="sitename">KMA Meet<span id="span-header">.</span></h1>
+			</a>
 
-            <!-- Navigation Menu -->
-            <nav id="navmenu" class="navmenu">
-                <ul>
-                    <li><a href="#hero">Trang chủ</a></li>
-                    <li><a href="#menu">Lịch họp</a></li>
-                    <li><a href="#events">Tài liệu</a></li>
-                    <li><a href="#chefs" id="right">Lên lịch</a></li>
-                    <li class="dropdown">
-                        <a href="#"><span>Tài khoản</span></a>
-                        <ul>
-                            <li><a href="#">Thông tin cá nhân</a></li>
-                            <li><a href="#">Đăng nhập</a></li>
-                            <li><a href="#">Đăng xuất</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-            </nav>
-        </div>
-    </header>
+			<!-- Navigation Menu -->
+			<nav id="navmenu" class="navmenu">
+				<ul>
+					<li><a href="#hero">Trang chủ</a></li>
+					<li><a href="#menu">Lịch họp</a></li>
+					<li><a href="#events">Tài liệu</a></li>
+					<li><a href="#chefs" id="right">Lên lịch</a></li>
+					<li class="dropdown">
+						<a id="account_btn"><span>Tài khoản</span></a>
+						<ul id="account_option">
+							<li><a href="#">Thông tin cá nhân</a></li>
+							<li><a href="#">Đăng nhập</a></li>
+							<li><a href="#">Đăng xuất</a></li>
+						</ul>
+					</li>
+				</ul>
+				<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+			</nav>
+		</div>
+	</header>
 
 
 	<div class="wrapper">
@@ -62,29 +64,33 @@
 						<p>Hãy nhập các thông tin cần thiết</p>
 						<div class="form-row">
 							<div class="form-holder">
-								<input type="text" placeholder="Tên cuộc họp" class="form-control">
+								<input type="text" id="new_meeting_name" placeholder="Tên cuộc họp"
+									class="form-control">
 							</div>
 							<div class="form-holder">
-								<input type="text" placeholder="Mã gợi nhớe" class="form-control">
+								<input type="text" id="new_meeting_rememberCode" placeholder="Mã gợi nhớe"
+									class="form-control">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-holder" id="start-time">
 								<input id="start-lable" type="text" placeholder="Thời gian bắt đầu: "
 									class="form-control" readonly>
-								<input id="start-input" type="datetime-local" placeholder="Start time"
-									class="form-control">
+								<input id="new_meeting_startTime" type="datetime-local"
+									placeholder="Start time" class="form-control">
 							</div>
 
 						</div>
 						<div class="form-row">
 							<div class="form-holder">
 								<span>Chọn phòng họp: </span>
-								<select name="" id=""></select>
+								<select id="new_meeting_room"></select>
 							</div>
 							<div class="form-holder">
 								<span>Chọn phòng ban: </span>
-								<select name="" id=""></select>
+								<select id="new_meeting_department">
+
+								</select>
 							</div>
 						</div>
 
@@ -104,18 +110,43 @@
 							<h3>Thành viên</h3>
 						</div>
 						<p>Chọn danh sách thành viên</p>
+
 						<div class="form-row">
 							<span>Chọn thành viên: </span>
-							<input type="text" id="search-box" placeholder="Tìm kiếm..." oninput="showSuggestions()" />
-							<div id="suggestions" class="suggestions"></div>
+							<input type="text" id="search_new_member" placeholder="Tìm kiếm..."
+								oninput="showSuggestions()" />
 
 						</div>
+
+						<div class="form-row">
+							<ul id="suggestions"></ul>
+						</div>
+
+						<div class="form-row">
+							<span>Chọn role: </span>
+
+							<select id="new_member_role">
+
+							</select>
+						</div>
+
+
+
+						<div class="form-row">
+							<button type="button" onclick="addSelectedMember()">Thêm</button>
+						</div>
+
+
+
 						<div class="form-row">
 							<h4>Các thành viên đã chọn</h4>
-						</div>
-						<div class="form-row">
 
 						</div>
+						<div class="form-row">
+							<ul id="selected-list"></ul>
+						</div>
+
+
 					</div>
 				</div>
 			</section>
@@ -127,6 +158,8 @@
 					<div class="image-holder">
 						<img src="images/form-wizard-3.jpg" alt="">
 					</div>
+
+
 					<div class="form-content">
 						<div class="form-header">
 							<h3>Tài liệu</h3>
@@ -140,8 +173,11 @@
 						</div>
 						<div class="form-row">
 							<h4>Tài liệu đã chọn</h4>
+							<!-- Khu vực hiển thị danh sách tài liệu -->
+							<ul id="file-list"></ul>
 						</div>
 					</div>
+
 				</div>
 			</section>
 		</form>
@@ -153,6 +189,9 @@
 	<!-- JQUERY STEP -->
 	<script src="jquery.steps.js"></script>
 	<script src="main.js"></script>
+	<script src="meet.js"></script>
+
+	<script src="../HEADER/header.js"></script>
 	<!-- Template created and distributed by Colorlib -->
 
 </body>

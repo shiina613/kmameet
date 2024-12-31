@@ -1,5 +1,12 @@
-const PROJECT_ID = "SK.0.A39px7Rx6cqcYOHnsoHzsvWOBm8qoSB";
-const PROJECT_SECRET = "SnRxVzI4T0dKWmZoR2w5UE5jRWtuc25hVWtBWDhSSWk=";
+//Tùng
+// const PROJECT_ID = "SK.0.A39px7Rx6cqcYOHnsoHzsvWOBm8qoSB";
+// const PROJECT_SECRET = "SnRxVzI4T0dKWmZoR2w5UE5jRWtuc25hVWtBWDhSSWk=";
+
+
+//Dương
+const PROJECT_ID = "SK.0.kOO5XpZJFdHHQVvAH5GY34cY5KWjQbRu";
+const PROJECT_SECRET = "djFVdXVoQk42Wk1EdlpvODNwNWNRNnR3V0xRcDE4";
+
 const BASE_URL = "https://api.stringee.com/v1/room2";
 
 class API {
@@ -142,7 +149,7 @@ joinWithId = async () => {
 mounted = async () => {
     console.log("dang mount")
     api.setRestToken();
-    
+
     if (roomId) {
         room_Data.roomId = roomId;
         await join();
