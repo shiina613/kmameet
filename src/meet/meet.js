@@ -415,51 +415,41 @@ addMember = (id_meeting) => {
 }
 
 
-const fileInput = document.getElementById('file-in');
-const fileList = document.getElementById('file-list');
-
-// Lắng nghe sự kiện khi người dùng chọn file
-fileInput.addEventListener('change', function () {
-    // Xóa danh sách tài liệu trước đó
-    console.log("Nhan duoc file")
-    fileList.innerHTML = '';
-
-    // Lặp qua từng file đã chọn và thêm vào danh sách
-    Array.from(fileInput.files).forEach((file, index) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${index + 1}. ${file.name}`;
-        fileList.appendChild(listItem);
-    });
-});
-
 
 addDocument = async (id_meeting) => {
     alert("Day la buoc add document")
 
     const fileInput = document.getElementById("file-in");
-    const formData = new FormData();
+    const files = fileInput.files; // Lấy danh sách tất cả các file đã chọn
 
-    // Lặp qua tất cả các file được chọn và thêm vào formData
-    for (const file of fileInput.files) {
-        formData.append("files", file);
+    if (files.length === 0) {
+        alert("Vui lòng chọn ít nhất một file!");
+        return;
     }
 
+    const formData = new FormData();
+
+    // Thêm tất cả các file vào FormData
+    Array.from(files).forEach((file, index) => {
+        formData.append(`file${index + 1}`, file); // Đặt tên key cho từng file
+    });
+
+    console.log(formData)
     try {
         const response = await fetch(`http://localhost:8080/documents/upload/${id_meeting}`, {
             method: "POST",
-            body: formData,
+            body: formData, // Gửi toàn bộ FormData
         });
 
         if (response.ok) {
             const result = await response.json();
-            alert("Upload thành công:", result);
+            alert("Upload thành công: " + result.message);
         } else {
-            alert("Lỗi khi upload:", response.statusText);
+            alert("Upload thất bại!");
         }
     } catch (error) {
-        console.log("Bat loi: ", error)
-        console
-        alert("Lỗi khi kết nối đến server:", error);
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi upload.");
     }
 
     alert("Ket thuc")
