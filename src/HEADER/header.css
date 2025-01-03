@@ -26,7 +26,9 @@ header a:hover {
 #header-container {
     display: flex;
 }
-
+#header {
+    display: flex;
+}
 .header {
     color: rgba(0, 0, 0, 1);
     background-color: rgba(0, 0, 0, 0.045);

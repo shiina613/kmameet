@@ -111,7 +111,7 @@ class API {
         };
     }
 }
-const roomId = localStorage.getItem("id_stringee")
+
 const api = new API(PROJECT_ID, PROJECT_SECRET);
 
 const videoContainer = document.getElementById("videos");
@@ -126,34 +126,10 @@ const room_Data = {
     callClient: undefined
 }
 
-roomUrl = () => {
-    return `Đây là room URL: bla bla bla `
-}
-
-join = async () => {
-    const roomToken = await api.getRoomToken(room_Data.roomId);
-    room_Data.roomToken = roomToken;
-
-    await authen();
-    await publish();
-}
-
-joinWithId = async () => {
-    const roomId = prompt("Nhập Room Id để tham gia cuộc họp!");
-    if (roomId) {
-        room_Data.roomId = roomId;
-        await join();
-    }
-}
-
 mounted = async () => {
     console.log("dang mount")
     api.setRestToken();
 
-    if (roomId) {
-        room_Data.roomId = roomId;
-        await join();
-    }
 }
 
 mounted()
@@ -229,63 +205,10 @@ publish = async (screenSharing = false) => {
     console.log("room puslish successful");
 }
 
-createRoom = async () => {
+createRoom = async (id_meeting) => {
+    alert("Them path")
     const room = await api.createRoom();
-    const { roomId } = room;
-    const roomToken = await api.getRoomToken(roomId);
-
-    room_Data.roomId = roomId;
-    room_Data.roomToken = roomToken;
-    console.log("Thông tin phòng vừa tạo: ", { roomId, roomToken });
-
-    await authen();
-    await publish();
+    console.log(room)
+    alert("Vua tao xong room, bat dau them")
 }
 
-
-
-
-subscribe = async (trackInfo) => {
-    const track = await room_Data.room.subscribe(trackInfo.serverId);
-    track.on("ready", () => {
-        const videoElement = track.attach();
-        addVideo(videoElement);
-    });
-}
-
-addVideo = (video) => {
-    video.setAttribute("controls", "true");
-    video.setAttribute("playsinline", "true");
-    videoContainer.appendChild(video);
-}
-
-
-
-// Thoát phòng
-const leaveRoom = () => {
-    if (room_Data.room) {
-        room_Data.room.leave();
-        alert("Bạn đã thoát cuộc họp.");
-        // Xóa video và reset trạng thái
-        videoContainer.innerHTML = '';
-        room_Data.room = undefined;
-    } else {
-        alert("Bạn không ở trong phòng nào.");
-    }
-};
-
-// Kết thúc phòng
-const endRoom = async () => {
-    if (room_Data.roomId) {
-        const confirmEnd = confirm("Bạn có chắc chắn muốn kết thúc cuộc họp không?");
-        if (confirmEnd) {
-            await api.deleteRoom(room_Data.roomId);
-            alert("Cuộc họp đã được kết thúc.");
-            // Xóa video và reset trạng thái
-            videoContainer.innerHTML = '';
-            room_Data.room = undefined;
-        }
-    } else {
-        alert("Không có phòng nào để kết thúc.");
-    }
-};

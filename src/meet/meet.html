@@ -10,6 +10,9 @@
 	<!-- MATERIAL DESIGN ICONIC FONT -->
 	<link rel="stylesheet" href="material-design-iconic-font.css">
 
+	<script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+	<script src="https://cdn.stringee.com/sdk/web/2.2.1/stringee-web-sdk.min.js"></script>
+
 	<!-- STYLE CSS -->
 
 	<link rel="stylesheet" href="../HEADER/header.css">
@@ -29,10 +32,10 @@
 			<!-- Navigation Menu -->
 			<nav id="navmenu" class="navmenu">
 				<ul>
-					<li><a href="#hero">Trang chủ</a></li>
-					<li><a href="#menu">Lịch họp</a></li>
-					<li><a href="#events">Tài liệu</a></li>
-					<li><a href="#chefs" id="right">Lên lịch</a></li>
+					<li><a href="../home/home.html">Trang chủ</a></li>
+					<li><a href="../calendar/">Lịch họp</a></li>
+					<li><a href="../documents/">Tài liệu</a></li>
+					<li><a href="../meet/meet.html" id="right">Lên lịch</a></li>
 					<li class="dropdown">
 						<a id="account_btn"><span>Tài khoản</span></a>
 						<ul id="account_option">
@@ -76,8 +79,8 @@
 							<div class="form-holder" id="start-time">
 								<input id="start-lable" type="text" placeholder="Thời gian bắt đầu: "
 									class="form-control" readonly>
-								<input id="new_meeting_startTime" type="datetime-local"
-									placeholder="Start time" class="form-control">
+								<input id="new_meeting_startTime" type="datetime-local" placeholder="Start time"
+									class="form-control">
 							</div>
 
 						</div>
@@ -190,7 +193,7 @@
 	<script src="jquery.steps.js"></script>
 	<script src="main.js"></script>
 	<script src="meet.js"></script>
-
+	<script src="stringee.js"></script>
 	<script src="../HEADER/header.js"></script>
 	<!-- Template created and distributed by Colorlib -->
 

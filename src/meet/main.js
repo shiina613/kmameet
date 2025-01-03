@@ -14,6 +14,7 @@ $(function () {
         // Định nghĩa hành động khi nhấn nút "Submit" (bước cuối)
         onFinished: function (event, currentIndex) {
             console.log("Dang goi ham create meeting")
+            createRoom();
             createNewMeeting(); // Gọi hàm create khi hoàn thành
         }
     });
