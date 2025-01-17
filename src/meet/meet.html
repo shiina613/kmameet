@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Meet - KMA Meet</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="colorlib.com">
+
+	<!-- MATERIAL DESIGN ICONIC FONT -->
+
+	<script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+	<script src="https://cdn.stringee.com/sdk/web/2.2.1/stringee-web-sdk.min.js"></script>
+
+	<!-- STYLE CSS -->
+
+	<link rel="stylesheet" href="../HEADER/header.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header id="header" class="header">
+		<div class="container">
+			<a href="index.html" class="logo">
+				<h1 class="sitename">KMA Meet </h1>
+			</a>
+			<nav id="navmenu" class="navmenu">
+				<ul>
+					<li><a href="../home/home.html">Trang chủ<br></a></li>
+					<li><a href="../calendar/calendar.html">Lịch họp</a></li>
+					<li><a href="../documents/document.html">Tài liệu</a></li>
+					<li><a href="../meet/meet.html" id="right" class="active">Lên lịch</a></li>
+					<li class="dropdown"><a><span id="account_btn">Tài khoản</span> </a>
+						<ul id="account_option">
+							<li><a href="../login/index.html">Đăng nhập</a></li>
+							<li><a href="../login/index.html">Đăng xuất</a></li>
+							<li><a href="../account/account.html">Thông tin cá nhân</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<div class="wrapper">
+		<form action="" id="wizard">
+			<!-- SECTION 1 -->
+			<h2></h2>
+			<section>
+				<div class="inner">
+					<div class="image-holder">
+						<img src="../Logo1.png" alt="" style="padding-top: 4vh ;">
+					</div>
+					<div class="form-content">
+						<div class="form-header">
+							<h3>Thông tin cuộc họp</h3>
+						</div>
+						<p>Hãy nhập các thông tin cần thiết</p>
+						<div class="form-row">
+							<div class="form-holder">
+								<input type="text" id="new_meeting_name" placeholder="Tên cuộc họp"
+									class="form-control">
+							</div>
+							<div class="form-holder">
+								<input type="text" id="new_meeting_rememberCode" placeholder="Mã gợi nhớ"
+									class="form-control">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-holder" id="start-time">
+								<input id="start-lable" type="text" placeholder="Thời gian bắt đầu: "
+									class="form-control" readonly>
+								<input id="new_meeting_startTime" type="datetime-local" placeholder="Start time"
+									class="form-control">
+							</div>
+
+						</div>
+						<div class="form-row">
+							<div class="form-holder">
+								<span>Chọn phòng họp: </span>
+								<select id="new_meeting_room"></select>
+							</div>
+							<div class="form-holder">
+								<span>Chọn phòng ban: </span>
+								<select id="new_meeting_department">
+
+								</select>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<!-- SECTION 2 -->
+			<h2></h2>
+			<section>
+				<div class="inner">
+					<div class="image-holder">
+						<img src="../Logo1.png" alt="" style="padding-top: 4vh ;">
+					</div>
+					<div class="form-content">
+						<div class="form-header">
+							<h3>Thành viên</h3>
+						</div>
+						<p>Chọn danh sách thành viên</p>
+
+						<div class="form-row">
+							<span>Chọn thành viên: </span>
+							<input type="text" id="search_new_member" placeholder="Tìm kiếm..."
+								oninput="showSuggestions()" />
+
+						</div>
+
+						<div class="form-row">
+							<ul id="suggestions"></ul>
+						</div>
+
+						<div class="form-row">
+							<span>Chọn role: </span>
+
+							<select id="new_member_role">
+
+							</select>
+						</div>
+
+
+
+						<div class="form-row">
+							<button type="button" onclick="addSelectedMember()">Thêm</button>
+						</div>
+
+
+
+						<div class="form-row">
+							<h4>Các thành viên đã chọn</h4>
+
+						</div>
+						<div class="form-row">
+							<ul id="selected-list"></ul>
+						</div>
+
+
+					</div>
+				</div>
+			</section>
+
+			<!-- SECTION 3 -->
+			<h2></h2>
+			<section>
+				<div class="inner">
+					<div class="image-holder">
+						<img src="../Logo1.png" alt="" style="padding-top: 4vh ;">
+					</div>
+
+
+					<div class="form-content">
+						<div class="form-header">
+							<h3>Tài liệu</h3>
+						</div>
+						<p>Thêm tài liệu cuộc họp</p>
+						<div class="form-row">
+							<div class="form-holder w-100">
+								<label for="file-in">Chọn tài liệu: </label>
+								<input type="file" id="file-in" multiple>
+							</div>
+						</div>
+						<div class="form-row">
+							<h4>Tài liệu đã chọn</h4>
+							<!-- Khu vực hiển thị danh sách tài liệu -->
+							<ul id="file-list"></ul>
+						</div>
+					</div>
+
+
+				</div>
+			</section>
+		</form>
+	</div>
+
+	<!-- JQUERY -->
+	<script src="jquery-3.3.1.min.js"></script>
+
+	<!-- JQUERY STEP -->
+	<script src="meet.js"></script>
+	<script src="stringee.js"></script>
+	<script src="jquery.steps.js"></script>
+	<script src="main.js"></script>
+
+
+	<script src="../HEADER/header.js"></script>
+	<!-- Template created and distributed by Colorlib -->
+
+</body>
+
+</html>

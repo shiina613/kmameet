@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>KMA Meet - Calendar</title>
+
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../HEADER/header.css">
+
+</head>
+
+<body class="index-page">
+    <header id="header" class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <h1 class="sitename">KMA Meet </h1>
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="../home/home.html">Trang chủ<br></a></li>
+                    <li><a href="../calendar/calendar.html" class="active">Lịch họp</a></li>
+                    <li><a href="../documents/document.html">Tài liệu</a></li>
+                    <li><a href="../meet/meet.html" id="right">Lên lịch</a></li>
+                    <li class="dropdown"><a><span id="account_btn">Tài khoản</span> </a>
+                        <ul id="account_option">
+                            <li><a href="../login/index.html">Đăng nhập</a></li>
+                            <li><a href="../login/index.html">Đăng xuất</a></li>
+                            <li ><a href="../account/account.html">Thông tin cá nhân</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <h1 style="margin-left: 2vw;">Danh sách lịch trình các cuộc họp</h1>
+        <section class="table-show">
+            <table>
+                <thead class="thead-dark" id="meeting_thead">
+                    <th>Tên cuộc họp</th>
+                    <th>Mã gợi nhớ</th>
+                    <th>Phòng ban</th>
+                    <th>Thời gian bắt đầu</th>
+                    <th>Tài liệu </th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                </thead>
+                <tbody id="meeting_tbody">
+                    <tr>
+                        <td>Tên cuộc họp</td>
+                        <td>Mã gợi nhớ</td>
+                        <td>Phòng ban</td>
+                        <td>Thời gian bắt đầu</td>
+                        <td>Tài liệu </td>
+                        <td>Trạng thái</td>
+                        <td><button type="button" onclick="join()"></button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- Main JS File -->
+    <script src="../HEADER/header.js"></script>
+    <script src="calendar.js"></script>
+  
+
+</body>
+
+</html>

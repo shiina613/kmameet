@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Meetings</title>
+    <link rel="stylesheet" href="edit.css">
+
+
+    <link rel="stylesheet" href="../HEADER/header.css">
+
+
+</head>
+
+<body>
+    <header id="header" class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <h1 class="sitename">KMA Meet </h1>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="../home/home.html" class="active">Trang chủ<br></a></li>
+                    <li><a href="../calendar/calendar.html">Lịch họp</a></li>
+                    <li><a href="../documents/document.html">Tài liệu</a></li>
+                    <li><a href="../meet/meet.html" id="right">Lên lịch</a></li>
+                    <li class="dropdown"><a><span id="account_btn">Tài khoản</span> </a>
+                        <ul id="account_option">
+                            <li><a href="../login/index.html">Đăng nhập</a></li>
+                            <li><a href="../login/index.html">Đăng xuất</a></li>
+                            <li><a href="../account/account.html">Thông tin cá nhân</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="body-container">
+
+
+        <div class="meeting-information">
+            <h1 id="meeting_information_h1">Tên của cuộc họp đang được cập nhật</h1>
+            <div id="meeting_information">
+                <p>Tên cuộc họp: <span id="meeting_name"></span></p>
+                <p>Mã gợi nhớ: <span id="meeting_rememberCode"></span></p>
+                <p>Thời gian bắt đầu: <span id="meeting_startTime"></span> </p>
+                <p>Phòng ban: <span id="meeting_department"></span></p>
+                <p>Phòng họp: <span id="meeting_room"></span> </p>
+                <button onclick="pre_edit_meeting()">Chỉnh sửa</button>
+            </div>
+            <div class="member">
+                <table>
+                    <thead>
+                        <th>Tên thành viên</th>
+                        <th>Mã nhân viên</th>
+                        <th>Chức danh</th>
+                        <th>Thao tác</th>
+
+                    </thead>
+                    <tbody id="meeting_member_tbody">
+
+                    </tbody>
+                </table>
+                <div class=" add_new_member">
+                    <div id="show_add_button">
+                        <p><button onclick="pre_add_member()">Thêm thành viên</button></p>
+                    </div>
+
+                    <div id="add_new_member" style="display: none;">
+                        <span>Nhập tên nhân viên: </span>
+                        <span id="search">
+                            <input type="text" id="searchBox" placeholder="Search by name..."
+                                oninput="handleSearch(this.value)" />
+                        </span>
+                        <ul id="suggestions" class="suggestion-box"></ul>
+
+                        <span> Chọn chức vụ: </span>
+                        <select id="new_member_role">
+                            <option>Chọn chức vụ</option>
+                        </select>
+                        <br>
+                        <button type="button" onclick="show_add_button()">Hủy</button>
+                        <button type="button" onclick="add_member()">Thêm</button>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="document">
+                <p><strong>Tài liệu: </strong></p>
+                <div id="meeting_document_information">
+
+                </div>
+
+                <br>
+                <div class="form-row">
+                    <div class="form-holder w-100">
+                        <label for="file-in">Chọn tài liệu: </label>
+                        <input type="file" id="file-in" multiple>
+                    </div>
+                </div>
+
+                <span id="addDocument">
+
+                </span>
+
+            </div>
+
+
+        </div>
+        <script src="getAllInformation.js"></script>
+        <script src="edit.js"></script>
+        <script src="editDocument.js"></script>
+        <script src="editMeeting.js"></script>
+        <script src="editMember.js"></script>
+
+        <script src="../HEADER/header.js"></script>
+    </div>
+
+</body>
+
+</html>

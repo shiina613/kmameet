@@ -1,0 +1,321 @@
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+    color: #212529;
+    background-color: #f2f2f2;
+    font-family: sans-serif, "Inter", "Amatic SC";
+}
+
+a {
+    color: #ce1212;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: color-mix(in srgb, #ce1212, transparent 25%);
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #212529;
+    font-family: "Amatic SC", sans-serif;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.header {
+    display: flex;
+    align-items: center;
+    color: #d4d4d4;
+    background-color: #ffffff;
+    padding: 18px 0;
+    transition: all 0.5s;
+    z-index: 997;
+    position: sticky;
+    top: 0;
+}
+
+.header .logo {
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    margin-right: 20vw;
+    margin-left: 2vw;
+}
+
+.dot {
+    display: inline-block;
+    font-size: 9px;
+    /* Giữ kích thước giống kích thước văn bản */
+    color: rgb(214, 83, 83);
+    /* Màu đỏ */
+    vertical-align: text-bottom;
+    /* Căn chỉnh vị trí giống dấu chấm thường */
+}
+
+.header .logo h1 {
+    font-size: 30px;
+    margin: 0;
+    font-weight: 700;
+    color: #37373f;
+    font-family: sans-serif, "Inter", "Amatic SC";
+}
+
+
+
+
+.header .logo {
+    order: 1;
+}
+
+.header .btn-getstarted {
+    order: 2;
+    margin: 0 15px 0 0;
+    padding: 6px 20px;
+}
+
+.header .navmenu {
+    order: 3;
+}
+
+#header {
+    border-bottom: 2px solid #eaeaea;
+    /* Viền của header */
+}
+
+/*--------------------------------------------------------------
+  # Navigation Menu
+  --------------------------------------------------------------*/
+
+.header .navmenu {
+    padding: 0;
+}
+
+.header .navmenu ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.header .navmenu li {
+    position: relative;
+}
+
+.header .navmenu>ul>li {
+    white-space: nowrap;
+    padding: 0px 2.5vw;
+}
+
+.header .navmenu>ul>li:last-child {
+    padding-right: 0;
+}
+
+.header .navmenu a,
+.header .navmenu a:focus {
+    color: #7f7f90;
+    font-size: 15px;
+    padding: 0 2px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+    position: relative;
+}
+
+.header .navmenu a i,
+.header .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.header .navmenu>ul>li>a:before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: #ce1212;
+    visibility: hidden;
+    width: 0px;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.header .navmenu a:hover:before,
+.header .navmenu li:hover>a:before,
+.header .navmenu .active:before {
+    visibility: visible;
+    width: 100%;
+}
+
+.header .navmenu li:hover>a,
+.header .navmenu .active,
+.header .navmenu .active:focus {
+    color: color-mix(in srgb, #7f7f90 80%, black 50%);
+}
+
+.header .navmenu .dropdown ul {
+    margin: 0;
+    padding: 10px 0;
+    background: #ffffff;
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    left: 14px;
+    top: 130%;
+    opacity: 0;
+    transition: 0.3s;
+    border-radius: 4px;
+    z-index: 99;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.header .navmenu .dropdown ul a {
+    padding-left: 1vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-right: 1vw;
+    font-size: 15px;
+    text-transform: none;
+    color: #7f7f90;
+}
+
+.header .navmenu .dropdown ul a i {
+    font-size: 12px;
+}
+
+.header .navmenu .dropdown ul a:hover,
+.header .navmenu .dropdown ul .active:hover,
+.header .navmenu .dropdown ul li:hover>a {
+    color: #ce1212;
+}
+
+.header .navmenu .dropdown:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+}
+
+.header .navmenu .dropdown .dropdown ul {
+    top: 0;
+    left: -90%;
+    visibility: hidden;
+}
+
+.header .navmenu .dropdown .dropdown:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: -100%;
+    visibility: visible;
+}
+
+.header #right {
+    margin-right: 18vw;
+}
+
+
+/*--------------------------------------------------------------
+  # Hero Section
+  --------------------------------------------------------------*/
+.hero {
+    width: 100%;
+    min-height: 60vh;
+    position: relative;
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.hero p {
+    color: color-mix(in srgb, #212529, transparent 30%);
+    margin: 5px 0 30px 0;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.hero .btn-get-started {
+    color: #ffffff;
+    background: #ce1212;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 28px 12px 28px;
+    border-radius: 50px;
+    transition: 0.5s;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+.hero .btn-get-started:hover {
+    color: #ffffff;
+    background: color-mix(in srgb, #ce1212, transparent 15%);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+.hero .animated {
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+
+
+@keyframes up-down {
+    0% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* Cấu hình cho hàng */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 5vw;
+    width: 60vw;
+}
+
+.row p {
+    margin-right: 10vw;
+}
+
+
+
+
+/* Đảm bảo hình ảnh có kích thước tối ưu */
+.hero-img img {
+    max-width: 80%;
+    height: 85vh;
+    width: 150vh;
+}

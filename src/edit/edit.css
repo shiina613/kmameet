@@ -1,0 +1,159 @@
+/* Tổng thể */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #2b2d42;
+}
+
+.body-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Phần thông tin cuộc họp */
+.meeting-information h1 {
+    font-size: 28px;
+    color: #2b2d42;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #8d99ae;
+    padding-bottom: 10px;
+}
+
+.meeting p {
+    font-size: 16px;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.meeting span {
+    font-weight: bold;
+    color: #ef233c;
+}
+
+.meeting button {
+    background-color: #2b2d42;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.meeting button:hover {
+    background-color: #ef233c;
+}
+
+/* Phần thành viên */
+.member table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.member th,
+.member td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 12px;
+}
+
+.member th {
+    background-color: #2b2d42;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.member tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.member tr:hover {
+    background-color: #e9ecef;
+}
+
+.member button {
+    background-color: #ef233c;
+    color: #ffffff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.member button:hover {
+    background-color: #d90429;
+}
+
+/* Phần tài liệu */
+.document p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #2b2d42;
+}
+
+#m_document {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#m_document a {
+    display: inline-block;
+    background-color: #edf2f4;
+    color: #2b2d42;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+#m_document a:hover {
+    background-color: #8d99ae;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+#m_document button {
+    background-color: #ef233c;
+    color: #ffffff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+#m_document button:hover {
+    background-color: #d90429;
+}
+
+.document button {
+    background-color: #2b2d42;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.document button:hover {
+    background-color: #8d99ae;
+}
