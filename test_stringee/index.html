@@ -14,112 +14,32 @@
 
     <!-- Import JS Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
-    <script src="https://cdn.stringee.com/sdk/web/2.2.1/stringee-web-sdk.min.js"></script>
+    <script src="sdk.js"></script>
+    <link rel="stylesheet" href="style.css">
 
-    <style>
-        body {
-            background-color: #f5f5f5;
-        }
-
-        .header-highlight {
-            color: #3273dc;
-            font-weight: bold;
-        }
-
-        .buttons-container {
-            margin-top: 20px;
-        }
-
-        .info {
-            margin-top: 30px;
-            background-color: #fdfdfd;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .info p {
-            margin-bottom: 10px;
-        }
-
-        #videos {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .video-container {
-            border: 2px solid #3273dc;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-    </style>
 </head>
 
 <body>
-    <section class="section">
-        <div class="container has-text-centered">
-            <!-- Header Section -->
-            <h1 class="title">
-                Chào mừng đến với <span class="header-highlight">KMA Meet</span>
-            </h1>
-            <p class="subtitle">Kết nối dễ dàng với Stringee API</p>
 
-            <!-- Buttons Section -->
-            <div class="buttons-container">
-                <button class="button is-primary is-medium" onclick="createRoom()">
-                    <span class="icon"><i class="fas fa-plus-circle"></i></span>
-                    <span>Tạo Meeting</span>
-                </button>
-                <button class="button is-link is-medium" onclick="joinWithId()">
-                    <span class="icon"><i class="fas fa-sign-in-alt"></i></span>
-                    <span>Join Meeting</span>
-                </button>
-                <button class="button is-info is-medium" onclick="publish(true)">
-                    <span class="icon"><i class="fas fa-desktop"></i></span>
-                    <span>Share Desktop</span>
-                </button>
-                <button class="button is-danger is-medium" onclick="leaveRoom()">
-                    <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
-                    <span>Thoát cuộc họp</span>
-                </button>
-                <button class="button is-warning is-medium" onclick="endRoom()">
-                    <span class="icon"><i class="fas fa-times-circle"></i></span>
-                    <span>Kết thúc cuộc họp</span>
-                </button>
-                <button class="button is-info is-medium" onclick="toggleMicrophone()">
-                    <span class="icon"><i class="fas fa-microphone-slash"></i></span>
-                    <span>Toggle Mic</span>
-                </button>
-                <button class="button is-danger is-medium" onclick="muteAllParticipants()">
-                    <span class="icon"><i class="fas fa-microphone-slash"></i></span>
-                    <span>Mute All</span>
-                </button>
-                <button class="button is-success is-medium" onclick="startRecording()">
-                    <span class="icon"><i class="fas fa-record-vinyl"></i></span>
-                    <span>Start Recording</span>
-                </button>
-                <button class="button is-danger is-medium" onclick="stopRecording()">
-                    <span class="icon"><i class="fas fa-stop-circle"></i></span>
-                    <span>Stop Recording</span>
-                </button>
+        <div class="videos-container">
+            <div id="screen">
 
             </div>
-
-            <!-- Info Section -->
+            <div id="videos">
+                
+            </div>
         </div>
-    </section>
 
-    <!-- Videos Section -->
-    <section class="section">
-        <div class="container">
-            <div id="videos"></div>
+
+
+
+        <div class="buttons-container button-stick" id="buttons-container">
+
         </div>
-    </section>
+
 
     <script src="script.js"></script>
+
 </body>
 
 </html>

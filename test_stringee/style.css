@@ -1,23 +1,31 @@
-.header-highlight {
-    color: #ff4954;
-}
-
-.info {
-    padding: 1.5rem;
-}
-
-.container {
-    padding-top: 1rem;
-}
-
-#videos {
+body {
+    width: 100vw;
+    height: 100vh;
     display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    flex-direction: column;
+    background-color: rgba(209, 209, 209, 0.553);
 }
 
-#videos video {
-    flex: 1 1 50%;
-    padding: 0;
-    min-width: 0;
+
+#buttons-container button {
+    border-radius: 20px;
+    font-weight: 500;
+    margin: 5px;
+}
+
+#btnToggle {
+    background-color: #ff00009d;
+}
+
+
+
+#btnEnd, #btnOut {
+    background-color: #ff0000e3;
+}
+.button-stick {
+    display: flex;
+    position: fixed;
+    bottom: 4vh;
+    justify-content: center;
+    width: 100vw;
 }

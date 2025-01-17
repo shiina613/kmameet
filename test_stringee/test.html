@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mic Audio Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        audio {
+            margin-top: 20px;
+        }
+
+        .videos {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        video {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Mic Audio Test</h1>
+    <div class="videos">
+        <video src="video1.mp4" controls></video>
+        <video src="video2.mp4" controls></video>
+    </div>
+    <button id="start">Start Recording</button>
+    <button id="stop" disabled>Stop Recording</button>
+    <audio id="audio" controls></audio>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+
+        const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
+        const audioElement = document.getElementById('audio');
+        const videosContainer = document.querySelector('.videos');
+
+        const userName = "YourName"; // Thay bằng tên của bạn
+        const userId = "YourID"; // Thay bằng ID của bạn
+
+        startButton.addEventListener('click', async () => {
+            try {
+                // Lấy tất cả các video bên trong div.videos
+                const videoElements = videosContainer.querySelectorAll('video');
+
+                if (videoElements.length === 0) {
+                    alert('No video elements found to capture audio.');
+                    return;
+                }
+
+                // Tạo một AudioContext và hợp nhất âm thanh từ tất cả các video
+                const audioContext = new AudioContext();
+                const destination = audioContext.createMediaStreamDestination();
+
+                videoElements.forEach(video => {
+                    const videoSource = audioContext.createMediaElementSource(video);
+                    videoSource.connect(destination);
+                });
+
+                mediaRecorder = new MediaRecorder(destination.stream);
+
+                mediaRecorder.ondataavailable = event => {
+                    audioChunks.push(event.data);
+                };
+
+                mediaRecorder.onstop = async () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                    audioChunks = [];
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    audioElement.src = audioUrl;
+
+                    // Gửi file âm thanh kèm tên và ID của người dùng
+                    const formData = new FormData();
+                    formData.append('audio', audioBlob, 'recording.wav');
+                    formData.append('name', userName);
+                    formData.append('id', userId);
+
+                    try {
+                        const response = await fetch('http://localhost:8080/upload-audio', {
+                            method: 'POST',
+                            body: formData,
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Failed to upload audio');
+                        }
+                        console.log(formData)
+                        alert('Audio uploaded successfully!');
+                    } catch (error) {
+                        console.error(error);
+                        alert('Error uploading audio');
+                    }
+                };
+
+                mediaRecorder.start();
+                startButton.disabled = true;
+                stopButton.disabled = false;
+            } catch (error) {
+                console.error('Error capturing audio from videos:', error);
+                alert('Could not capture audio. Please check your setup.');
+            }
+        });
+
+        stopButton.addEventListener('click', () => {
+            mediaRecorder.stop();
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        });
+    </script>
+</body>
+
+</html>
